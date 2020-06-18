@@ -1,0 +1,56 @@
+
+
+ *******************Model Details******************** 
+
+Train Accuracy: 98%
+ Test Accuracy: 93%
+
+ Parameters: 
+
+conv1.weight	torch.Size([16, 3, 3, 3])
+conv1.bias	torch.Size([16])
+batch1.weight	torch.Size([16])
+batch1.bias	torch.Size([16])
+batch1.running_mean	torch.Size([16])
+batch1.running_var	torch.Size([16])
+batch1.num_batches_tracked	torch.Size([])
+conv2.weight	torch.Size([32, 16, 3, 3])
+conv2.bias	torch.Size([32])
+batch2.weight	torch.Size([32])
+batch2.bias	torch.Size([32])
+batch2.running_mean	torch.Size([32])
+batch2.running_var	torch.Size([32])
+batch2.num_batches_tracked	torch.Size([])
+conv3.weight	torch.Size([32, 32, 3, 3])
+conv3.bias	torch.Size([32])
+batch3.weight	torch.Size([32])
+batch3.bias	torch.Size([32])
+batch3.running_mean	torch.Size([32])
+batch3.running_var	torch.Size([32])
+batch3.num_batches_tracked	torch.Size([])
+conv4.weight	torch.Size([128, 32, 3, 3])
+conv4.bias	torch.Size([128])
+batch4.weight	torch.Size([128])
+batch4.bias	torch.Size([128])
+batch4.running_mean	torch.Size([128])
+batch4.running_var	torch.Size([128])
+batch4.num_batches_tracked	torch.Size([])
+fc1.weight	torch.Size([126, 768])
+fc1.bias	torch.Size([126])
+batch_fc1.weight	torch.Size([126])
+batch_fc1.bias	torch.Size([126])
+batch_fc1.running_mean	torch.Size([126])
+batch_fc1.running_var	torch.Size([126])
+batch_fc1.num_batches_tracked	torch.Size([])
+fc2.weight	torch.Size([30, 126])
+fc2.bias	torch.Size([30])
+batch_fc2.weight	torch.Size([30])
+batch_fc2.bias	torch.Size([30])
+batch_fc2.running_mean	torch.Size([30])
+batch_fc2.running_var	torch.Size([30])
+batch_fc2.num_batches_tracked	torch.Size([])
+fc3.weight	torch.Size([3, 30])
+fc3.bias	torch.Size([3])
+
+Last Loss: 0.0176
+
