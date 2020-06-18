@@ -21,7 +21,7 @@ _______________________
 
 ![3-channel example](https://github.com/MaddyUnknown/GoogleDino_CNN-model/blob/master/Test/Image/3%20channel.PNG)
 
-> 3 channels consisting of 3 consecutive frames to predict a single output
+> ###### 3 channels consisting of 3 consecutive frames to predict a single output
 
 ## Repo Contents:
 - `ModelRun.py` - Currently the main program file, this is responsible for all the steps described in how the application works, currently uses model 9 in the model folder
