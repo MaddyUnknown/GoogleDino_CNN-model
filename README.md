@@ -24,7 +24,7 @@ _______________________
 - `Model_Train.ipynb` - Jupyter notebook for training model
 
 ## Requirement:
-- `PyTorch v1.0.0`
+- `PyTorch GPU v1.0.0`
 - `Numpy v1.17.3`
 - `cv2 v4.1.1`
 - `PyAutoGUI v0.9.50`
