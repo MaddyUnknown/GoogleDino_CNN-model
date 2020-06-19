@@ -29,6 +29,7 @@ _______________________
 - `CreateData.py` - Helps in recording training data
 - `Sequencing_data.py` - Takes the recording data and concatenates 3 images (in sequence) to give a 3x (img_dim) input for the model
 - `Create_train_val.py` - Uses the recorded data to create training and validation data
+- `CheckData.py` - Used to display images or remove data miss-match
 - `Model_Train.ipynb` - Jupyter notebook for training model
 - `Test` - Contain ModelRun for previously trained models
 
