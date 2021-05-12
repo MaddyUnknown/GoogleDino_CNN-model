@@ -34,7 +34,4 @@ _______________________
 - `Test` - Contain ModelRun for previously trained models
 
 ## Requirement:
-- `PyTorch GPU v1.0.0`
-- `Numpy v1.17.3`
-- `cv2 v4.1.1`
-- `PyAutoGUI v0.9.50`
+`PyTorch GPU v1.0.0` `Numpy v1.17.3` `PyAutoGUI v0.9.50` `cv2 v4.1.1`
