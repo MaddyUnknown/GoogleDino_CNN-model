@@ -11,6 +11,7 @@ class ToTorch(object):
         image = image.reshape((1,i,40,140))
         return torch.from_numpy(image)
 
+# Model Structure
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
@@ -20,24 +21,28 @@ class Net(nn.Module):
         self.relu1 = nn.ReLU()
         self.pool1 = nn.MaxPool2d(2, stride =2)
         
+        self.dropout1 = nn.Dropout(0.2) 
+        
         self.conv2 = nn.Conv2d(16, 32, 3)
         self.batch2 = nn.BatchNorm2d(32)
         self.relu2 = nn.ReLU()
         self.pool2 = nn.MaxPool2d(2, stride=2)
         
-        self.conv3 = nn.Conv2d(32, 32, 3)
-        self.batch3 = nn.BatchNorm2d(32)
+        self.dropout2 = nn.Dropout(0.25) 
+        
+        self.conv3 = nn.Conv2d(32, 64, 3)
+        self.batch3 = nn.BatchNorm2d(64)
         self.relu3 = nn.ReLU()
         self.pool3 = nn.MaxPool2d(2, stride=2)
         
-        self.conv4 = nn.Conv2d(32, 128, 3)
-        self.batch4 = nn.BatchNorm2d(128)
-        self.relu4 = nn.ReLU()
-        self.pool4 = nn.MaxPool2d(2, stride=2)
+        self.dropout3 = nn.Dropout(0.25) 
         
-        self.fc1 = nn.Linear(128*1*6, 126)
+        
+        self.fc1 = nn.Linear(64*3*15, 126)
         self.batch_fc1 = nn.BatchNorm1d(126)
         self.relu_fc1 = nn.ReLU()
+        
+        self.dropout4 = nn.Dropout(0.25) 
         
         self.fc2 = nn.Linear(126, 30)
         self.batch_fc2 = nn.BatchNorm1d(30)
@@ -50,18 +55,22 @@ class Net(nn.Module):
         x = self.relu1(self.batch1(self.conv1(x)))
         x = self.pool1(x)
         
+        x = self.dropout1(x)
+        
         x = self.relu2(self.batch2(self.conv2(x)))
         x = self.pool2(x)
         
+        x = self.dropout2(x)
+        
         x = self.relu3(self.batch3(self.conv3(x)))
         x = self.pool3(x)
+        x = self.dropout3(x)
         
-        x = self.relu4(self.batch4(self.conv4(x)))
-        x = self.pool4(x)
-        
-        x = x.view(-1, 128*1*6)
+        x = x.view(-1, 64*3*15)
         
         x = self.relu_fc1(self.batch_fc1(self.fc1(x)))
+        
+        x = self.dropout4(x)
         
         x = self.relu_fc2(self.batch_fc2(self.fc2(x)))
         
@@ -73,11 +82,19 @@ def up():
     pyautogui.press('up')
 
 def down():
-    pyautogui.press('down')
+    pyautogui.keyDown('down')
+    time.sleep(0.5);
+    pyautogui.keyUp('down')
+
 
 def snap():
-    image = np.array(pyautogui.screenshot(region=(100,205,770,200)))
+    '''
+    Change the value of region depending on the position of chrome window, (x,y,h,w)
+    '''
+    image = np.array(pyautogui.screenshot(region=(170,165,620,160)))    # dpi now set to 100, (secific to my pc) inital 125 dpi corrospont to (100,205,770,200)
     image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+    # cv2.imshow("check", image)
+    # cv2.waitKey(0)
     image = cv2.resize(image, (140,40))
     image = ToTorch()(image, 1)
     return image
@@ -97,14 +114,15 @@ def predict():
             img = ToTorch()(np.append(img[0][1:].reshape((1,2,40, 140)), image, axis = 1), 3)
             output = model(img.float())
             output = int(torch.argmax(output, 1))
-            #print(output)
             
             if output == 0:
                 up()
+                print("Up")
             elif output == 1:
                 pass
             elif output == 2:
                 down()
+                print("Down")
         
         if wapi.GetAsyncKeyState(ord('P')):
             if paused:
@@ -119,8 +137,7 @@ def predict():
             break
 
 
-model = Net()
-model.load_state_dict(torch.load(r'Models\Model_v9\Model_v9'))
+model = torch.load(r'Models\Model_v11\Model_v11_no_class')
 model.eval()
 
 for i in range(4):
