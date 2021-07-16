@@ -137,7 +137,7 @@ def predict():
             break
 
 
-model = torch.load(r'Models\Model_v11\Model_v11_no_class')
+model = torch.load(r'Model\Model_v11\Model_v11_no_class')
 model.eval()
 
 for i in range(4):
